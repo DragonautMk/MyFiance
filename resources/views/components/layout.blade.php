@@ -12,7 +12,8 @@
 <body>
     <x-navbar>
     </x-navbar>
-    <div class="vh-100">
+
+    <div class="min-vh-100 mb-5">
         {{ $slot }}
     </div>
 

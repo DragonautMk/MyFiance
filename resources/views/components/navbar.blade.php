@@ -11,22 +11,39 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link active" href="#">I nostri servizi finanziari</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">I nostro Staff</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                        aria-expanded="false">Area Clienti</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Accedi</a></li>
-                        <li><a class="dropdown-item" href="#">Prenota un appuntamento</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
+                @auth
 
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">Area Clienti</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"
+                                    onclick="event.preventDefault();document.querySelector('#form-logout').submit();">Logout</a>
+                            </li>
+                            <form action="{{ route('logout') }}" method="post" class="d-none" id="form-logout">@csrf</form>
+                            <li><a class="dropdown-item" href="#">Prenota un appuntamento</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">Area Clienti</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('login') }}">Accedi</a></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">Registrati</a></li>
+                            <li><a class="dropdown-item" href="#">Prenota un appuntamento</a></li>
+                        </ul>
+                    </li>
+                @endauth
                 <li class="nav-item">
                     <a class="nav-link active" href="#">La nostra storia</a>
                 </li>
